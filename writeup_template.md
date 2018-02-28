@@ -19,9 +19,9 @@ The goals / steps of this project are the following:
 [image1]: ./write-up/OriginalBachartVisualization.jpg "Barchart Visualization"
 [image2]: ./write-up/OriginalImages.jpg "Original images"
 [image3]: ./write-up/BrightnessAugmentedImages.jpg "Brightness augmented images"
-[image3]: ./examples/random_noise.jpg "Random Noise"
-[image4]: ./examples/placeholder.png "Traffic Sign 1"
-[image5]: ./examples/placeholder.png "Traffic Sign 2"
+[image4]: ./write-up/GeneratedImages.jpg "Generated images"
+[image5]: ./write-up/GrayscaledImages.jpg "Grayscaled images"
+[image6]: ./write-up/NormalizedImages.jpg "Normalized images"
 [image6]: ./examples/placeholder.png "Traffic Sign 3"
 [image7]: ./examples/placeholder.png "Traffic Sign 4"
 [image8]: ./examples/placeholder.png "Traffic Sign 5"
@@ -170,36 +170,33 @@ I used the numpy library to calculate summary statistics of the traffic signs da
 ### Design and Test a Model Architecture
 
 #### 1. Describe how you preprocessed the image data. What techniques were chosen and why did you choose these techniques? Consider including images showing the output of each preprocessing technique. Pre-processing refers to techniques such as converting to grayscale, normalization, etc. (OPTIONAL: As described in the "Stand Out Suggestions" part of the rubric, if you generated additional data for training, describe why you decided to generate additional data, how you generated the data, and provide example images of the additional data. Then describe the characteristics of the augmented training set like number of images in the set, number of images for each class, etc.)
-* Let's use the image below as our original images to demonstrate the augmentation techniques
-![alt text][image2]
 * As we can see in the barchart diagram above, numbers of samples of classes vary in a large range from 180 to 2010. With this example distribution the trained model will prone to classes, which have more example. To make the model to behave equally to every class data augumentation is needed. In this project some augmentation techniques are applied: brightness augmentation, generation of additional data, grayscale conversion and normalization. The augmentation techniques are deployed in following order:
   + Brightness augmentation
   + Generate additional data for training
   + Converting images to grayscale
   + Image normalization
+* Let's use the image below as our original images to demonstrate the augmentation techniques
+![alt text][image2]
 * Brightness augmentation. In this step the brightness of data images is changed randomly, in this way the model will be insensitive to brightness changes in the training images, so the model learns to not rely on brightness information. Brightness augmented images are used as input in the next step. Some brightness augmented images are shown below
 ![alt text][image3]
 * Generate additional data for training. In this step additional data images are generated. The augmentation is done via a number of random transformation, so that the model would never see twice the exact same picture. This helps prevent overfitting and helps the model generalize better. In Keras this can be done via the keras.preprocessing.image.ImageDataGenerator class. This class allows to:
   + configure random transformations and normalization operations to be done on your image data during training
   + instantiate generators of augmented image batches (and their labels) via .flow(data, labels) or .flow_from_directory(directory). These generators can then be used with the Keras model methods that accept data generators as inputs, fit_generator, evaluate_generator and predict_generator
+  + In this project following transfomations are applied:
+    <pre><code>
+        datagen = ImageDataGenerator(rotation_range=10,     # rotation transformation
+                                 width_shift_range=0.2,     # horizontal shift
+                                 height_shift_range=0.2,    # verticl shift
+                                 zoom_range=0.2,            # Zoom 
+                                shear_range=0.2)            # shearing </code></pre>
+   +  Some generated images are shown below
+   ![alt text][image4]
+* Converting images to grayscale. Grayscaled images are shown below
+   ![alt text][image5]
+* Image normalization. Normalized images are shown below
+   ![alt text][image6]
+* Visualization of the augmented data set
 
-As a first step, I decided to convert the images to grayscale because ...
-
-Here is an example of a traffic sign image before and after grayscaling.
-
-![alt text][image2]
-
-As a last step, I normalized the image data because ...
-
-I decided to generate additional data because ... 
-
-To add more data to the the data set, I used the following techniques because ... 
-
-Here is an example of an original image and an augmented image:
-
-![alt text][image3]
-
-The difference between the original data set and the augmented data set is the following ... 
 
 
 #### 2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
