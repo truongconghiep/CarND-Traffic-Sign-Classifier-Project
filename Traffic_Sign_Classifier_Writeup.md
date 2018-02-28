@@ -164,7 +164,7 @@ I used the numpy library to calculate summary statistics of the traffic signs da
 |   42   |        210        |       90       |          30          | End of no passing by vehicles over 3.5 metric tons |
 +--------+-------------------+----------------+----------------------+----------------------------------------------------+
 </code></pre>
-* Barchar visualization
+* Barchart visualization
 ![alt text][image1]
 
 ### Design and Test a Model Architecture
@@ -203,17 +203,20 @@ I used the numpy library to calculate summary statistics of the traffic signs da
 
 My final model consisted of the following layers:
 
-| Layer         		|     Description	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| Input         		| 32x32x3 RGB image   							| 
-| Convolution 3x3     	| 1x1 stride, same padding, outputs 32x32x64 	|
-| RELU					|												|
-| Max pooling	      	| 2x2 stride,  outputs 16x16x64 				|
-| Convolution 3x3	    | etc.      									|
-| Fully connected		| etc.        									|
-| Softmax				| etc.        									|
-|						|												|
-|						|												|
+| Layer    |     Description	     |  stride    | Kernel     |Padding  |  output   |  
+|:--------:|:---------------------:|:----------:|:----------:|:-------:|:---------:|
+|          | Input image 32x32x1   |            |            |         |           | 
+| 1      	 |  	Convolution        |     1x1    |   5x5x6    |  VALID  |  28x28x6  |
+| 		     |     RELU              |		  			|            |         |           |
+|          |  Max pooling	         |    2x2     |   2x2      |  VALID  | 14x14x6   |
+| 2        |  Convolution  	      |    1x1      |   5x5x16   | VALID   | 10x10x16  | 
+|          |      RELU     		    |   					|            |         |           |
+|          |  Max pooling	        |    2x2			|    2x2     | VALID   | 5x5x16    |
+|	3        | 	Convolution         |		1x1  			|    5x5x400 | VALID   | 1x1x400   |
+|					 | 	     RELU           |							|            |         |           |
+| 4        | flatten(layer2,layer3|             |            |         |  800      |
+| 5        | Dropout              |             |            |         |  800      |
+| 6        | Fully connected      |             |            |         |  43       |
  
 
 
