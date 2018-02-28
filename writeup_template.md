@@ -1,9 +1,6 @@
 # **Traffic Sign Recognition** 
 
-## Writeup
-
-### You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
-
+Student: Hiep Truong Cong
 ---
 
 **Build a Traffic Sign Recognition Project**
@@ -36,8 +33,31 @@ The goals / steps of this project are the following:
 
 #### 1. Provide a Writeup / README that includes all the rubric points and how you addressed each one. You can submit your writeup as markdown or pdf. You can use this template as a guide for writing the report. The submission includes the project code.
 
-You're reading it! and here is a link to my [project code](https://github.com/udacity/CarND-Traffic-Sign-Classifier-Project/blob/master/Traffic_Sign_Classifier.ipynb)
-
+##### 1. Files Submitted:
+* [Jupyter notebook code](https://github.com/truongconghiep/CarND-Traffic-Sign-Classifier-Project/blob/master/Traffic_Sign_Classifier.ipynb)
+* [HTML file](https://github.com/truongconghiep/CarND-Traffic-Sign-Classifier-Project/blob/master/Traffic_Sign_Classifier.html)
+* [Write-up file](https://github.com/truongconghiep/CarND-Traffic-Sign-Classifier-Project/blob/master/Traffic_Sign_Classifier.ipynb)
+##### 2. Dataset Exploration
+* Dataset Summary:
+   * Number of examples in each data sub-set (e.g. traing, validattion and test data subsets)
+   * Image data shape
+   * number of classes
+* Exploratory Visualization
+   * Table visualization
+   * Barchart diagram visualization
+* Design and Test a Model Architecture
+   * Preprocessing: discription of the chosen preprocessing techniques
+   * Model Architecture
+     + Discription of the optimizer and other parameters
+     + Discusion
+   * Model Training: discusion of training parameters and training process
+   * Solution Approach: parameter tuning process to find the solution
+ * Test a Model on New Images
+   * Acquiring New Images
+     + Load and visualize images
+     + Discusion
+   * Performance on new Images: performance comparision of accuracy on captured images and on the test set
+   * Model Certainty - Softmax Probabilities: discusion about the certainty of the model
 ### Data Set Summary & Exploration
 
 #### 1. Provide a basic summary of the data set. In the code, the analysis should be done using python, numpy and/or pandas methods rather than hardcoding results manually.
