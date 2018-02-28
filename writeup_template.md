@@ -16,12 +16,12 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./write-up/OriginalBachartVisualization.jpg "Barchart Visualization"
-[image2]: ./write-up/OriginalImages.jpg "Original images"
-[image3]: ./write-up/BrightnessAugmentedImages.jpg "Brightness augmented images"
-[image4]: ./write-up/GeneratedImages.jpg "Generated images"
-[image5]: ./write-up/GrayscaledImages.jpg "Grayscaled images"
-[image6]: ./write-up/NormalizedImages.jpg "Normalized images"
+[image1]: ./write_up/OriginalBachartVisualization.jpg "Barchart Visualization"
+[image2]: ./write_up/OriginalImages.jpg "Original images"
+[image3]: ./write_up/BrightnessAugmentedImages.jpg "Brightness augmented images"
+[image4]: ./write_up/GeneratedImages.jpg "Generated images"
+[image5]: ./write_up/GrayscaledImages.jpg "Grayscaled images"
+[image6]: ./write_up/NormalizedImages.jpg "Normalized images"
 [image6]: ./examples/placeholder.png "Traffic Sign 3"
 [image7]: ./examples/placeholder.png "Traffic Sign 4"
 [image8]: ./examples/placeholder.png "Traffic Sign 5"
