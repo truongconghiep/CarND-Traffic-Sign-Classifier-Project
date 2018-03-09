@@ -22,9 +22,8 @@ The goals / steps of this project are the following:
 [image4]: ./write_up/GeneratedImages.jpg "Generated images"
 [image5]: ./write_up/GrayscaledImages.jpg "Grayscaled images"
 [image6]: ./write_up/NormalizedImages.jpg "Normalized images"
-[image6]: ./examples/placeholder.png "Traffic Sign 3"
-[image7]: ./examples/placeholder.png "Traffic Sign 4"
-[image8]: ./examples/placeholder.png "Traffic Sign 5"
+[image7]:  ./write_up/AugmentedDataBarchart.jpg "Augmented image data"
+
 
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
@@ -184,11 +183,11 @@ I used the numpy library to calculate summary statistics of the traffic signs da
   + instantiate generators of augmented image batches (and their labels) via .flow(data, labels) or .flow_from_directory(directory). These generators can then be used with the Keras model methods that accept data generators as inputs, fit_generator, evaluate_generator and predict_generator
   + In this project following transfomations are applied:
     <pre><code>
-        datagen = ImageDataGenerator(rotation_range=10,     # rotation transformation
-                                 width_shift_range=0.2,     # horizontal shift
-                                 height_shift_range=0.2,    # verticl shift
-                                 zoom_range=0.2,            # Zoom 
-                                shear_range=0.2)            # shearing </code></pre>
+        datagen = ImageDataGenerator(rotation_range=4,     # rotation transformation
+                                 width_shift_range=0.05,     # horizontal shift
+                                 height_shift_range=0.05,    # verticl shift
+                                 zoom_range=0.05,            # Zoom 
+                                shear_range=0.05)            # shearing </code></pre>
    +  Some generated images are shown below
    ![alt text][image4]
 * Converting images to grayscale. Grayscaled images are shown below
@@ -196,8 +195,98 @@ I used the numpy library to calculate summary statistics of the traffic signs da
 * Image normalization. Normalized images are shown below
    ![alt text][image6]
 * Visualization of the augmented data set
-
-
+<pre><code>
++--------+----------+------+------------+---------------------------------------------------------------------------------+
+| labels | Training | Test | Validation |                                   Class name                                    |
++--------+----------+------+------------+---------------------------------------------------------------------------------+
+|   0    |   2010   |  60  |     30     |                              Speed limit (20km/h)                               |
++--------+----------+------+------------+---------------------------------------------------------------------------------+
+|   1    |   2010   | 720  |    240     |                              Speed limit (30km/h)                               |
++--------+----------+------+------------+---------------------------------------------------------------------------------+
+|   2    |   2010   | 750  |    240     |                              Speed limit (50km/h)                               |
++--------+----------+------+------------+---------------------------------------------------------------------------------+
+|   3    |   2010   | 450  |    150     |                              Speed limit (60km/h)                               |
++--------+----------+------+------------+---------------------------------------------------------------------------------+
+|   4    |   2010   | 660  |    210     |                              Speed limit (70km/h)                               |
++--------+----------+------+------------+---------------------------------------------------------------------------------+
+|   5    |   2010   | 630  |    210     |                              Speed limit (80km/h)                               |
++--------+----------+------+------------+---------------------------------------------------------------------------------+
+|   6    |   2010   | 150  |     60     |                           End of speed limit (80km/h)                           |
++--------+----------+------+------------+---------------------------------------------------------------------------------+
+|   7    |   2010   | 450  |    150     |                              Speed limit (100km/h)                              |
++--------+----------+------+------------+---------------------------------------------------------------------------------+
+|   8    |   2010   | 450  |    150     |                              Speed limit (120km/h)                              |
++--------+----------+------+------------+---------------------------------------------------------------------------------+
+|   9    |   2010   | 480  |    150     |                                   No passing                                    |
++--------+----------+------+------------+---------------------------------------------------------------------------------+
+|   10   |   2010   | 660  |    210     |                  No passing for vehicles over 3.5 metric tons                   |
++--------+----------+------+------------+---------------------------------------------------------------------------------+
+|   11   |   2010   | 420  |    150     |                      Right-of-way at the next intersection                      |
++--------+----------+------+------------+---------------------------------------------------------------------------------+
+|   12   |   2010   | 690  |    210     |                                  Priority road                                  |
++--------+----------+------+------------+---------------------------------------------------------------------------------+
+|   13   |   2010   | 720  |    240     |                                      Yield                                      |
++--------+----------+------+------------+---------------------------------------------------------------------------------+
+|   14   |   2010   | 270  |     90     |                                      Stop                                       |
++--------+----------+------+------------+---------------------------------------------------------------------------------+
+|   15   |   2010   | 210  |     90     |                                   No vehicles                                   |
++--------+----------+------+------------+---------------------------------------------------------------------------------+
+|   16   |   2010   | 150  |     60     |                    Vehicles over 3.5 metric tons prohibited                     |
++--------+----------+------+------------+---------------------------------------------------------------------------------+
+|   17   |   2010   | 360  |    120     |                                    No entry                                     |
++--------+----------+------+------------+---------------------------------------------------------------------------------+
+|   18   |   2010   | 390  |    120     |                                 General caution                                 |
++--------+----------+------+------------+---------------------------------------------------------------------------------+
+|   19   |   2010   |  60  |     30     |                           Dangerous curve to the left                           |
++--------+----------+------+------------+---------------------------------------------------------------------------------+
+|   20   |   2010   |  90  |     60     |                          Dangerous curve to the right                           |
++--------+----------+------+------------+---------------------------------------------------------------------------------+
+|   21   |   2010   |  90  |     60     |                                  Double curve                                   |
++--------+----------+------+------------+---------------------------------------------------------------------------------+
+|   22   |   2010   | 120  |     60     |                                   Bumpy road                                    |
++--------+----------+------+------------+---------------------------------------------------------------------------------+
+|   23   |   2010   | 150  |     60     |                                  Slippery road                                  |
++--------+----------+------+------------+---------------------------------------------------------------------------------+
+|   24   |   2010   |  90  |     30     |                            Road narrows on the right                            |
++--------+----------+------+------------+---------------------------------------------------------------------------------+
+|   25   |   2010   | 480  |    150     |                                    Road work                                    |
++--------+----------+------+------------+---------------------------------------------------------------------------------+
+|   26   |   2010   | 180  |     60     |                                 Traffic signals                                 |
++--------+----------+------+------------+---------------------------------------------------------------------------------+
+|   27   |   2010   |  60  |     30     |                                   Pedestrians                                   |
++--------+----------+------+------------+---------------------------------------------------------------------------------+
+|   28   |   2010   | 150  |     60     |                                Children crossing                                |
++--------+----------+------+------------+---------------------------------------------------------------------------------+
+|   29   |   2010   |  90  |     30     |                                Bicycles crossing                                |
++--------+----------+------+------------+---------------------------------------------------------------------------------+
+|   30   |   2010   | 150  |     60     |                               Beware of ice/snow                                |
++--------+----------+------+------------+---------------------------------------------------------------------------------+
+|   31   |   2010   | 270  |     90     |                              Wild animals crossing                              |
++--------+----------+------+------------+---------------------------------------------------------------------------------+
+|   32   |   2010   |  60  |     30     |                       End of all speed and passing limits                       |
++--------+----------+------+------------+---------------------------------------------------------------------------------+
+|   33   |   2010   | 210  |     90     |                                Turn right ahead                                 |
++--------+----------+------+------------+---------------------------------------------------------------------------------+
+|   34   |   2010   | 120  |     60     |                                 Turn left ahead                                 |
++--------+----------+------+------------+---------------------------------------------------------------------------------+
+|   35   |   2010   | 390  |    120     |                                   Ahead only                                    |
++--------+----------+------+------------+---------------------------------------------------------------------------------+
+|   36   |   2010   | 120  |     60     |                              Go straight or right                               |
++--------+----------+------+------------+---------------------------------------------------------------------------------+
+|   37   |   2010   |  60  |     30     |                               Go straight or left                               |
++--------+----------+------+------------+---------------------------------------------------------------------------------+
+|   38   |   2010   | 690  |    210     |                                   Keep right                                    |
++--------+----------+------+------------+---------------------------------------------------------------------------------+
+|   39   |   2010   |  90  |     30     |                                    Keep left                                    |
++--------+----------+------+------------+---------------------------------------------------------------------------------+
+|   40   |   2010   |  90  |     60     |                              Roundabout mandatory                               |
++--------+----------+------+------------+---------------------------------------------------------------------------------+
+|   41   |   2010   |  60  |     30     |                                End of no passing                                |
++--------+----------+------+------------+---------------------------------------------------------------------------------+
+|   42   |   2010   |  90  |     30     |               End of no passing by vehicles over 3.5 metric tons                |
++--------+----------+------+------------+---------------------------------------------------------------------------------+
+</code></pre>
+![alt text][image7]
 
 #### 2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
 
@@ -217,12 +306,20 @@ My final model consisted of the following layers:
 | 4        | flatten(layer2,layer3|             |            |         |  800      |
 | 5        | Dropout              |             |            |         |  800      |
 | 6        | Fully connected      |             |            |         |  43       |
+
+
  
 
 
 #### 3. Describe how you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
 
 To train the model, I used an ....
+
+  EPOCHS = 200
+  BATCH_SIZE = 128
+  rate = 0.0009
+  and Adam optimizer 
+
 
 #### 4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
 
