@@ -13,7 +13,6 @@ The goals / steps of this project are the following:
 * Analyze the softmax probabilities of the new images
 * Summarize the results with a written report
 
-
 [//]: # (Image References)
 
 [image1]: ./write_up/OriginalBachartVisualization.jpg "Barchart Visualization"
@@ -266,7 +265,6 @@ Validation Accuracy = 0.941
 ![alt text][image8]
 
 
-
 * Training Modified_LeNet
 <pre><code>
 Training...
@@ -338,6 +336,9 @@ Validation Accuracy = 0.886
 </code></pre>
 ![alt text][image11]
 
+Based on the performance evaluation above I choose the "Modified_LeNet" model as my final model
+##### Step 2: Train the final model
+* In this step I train my final model with different traning parameter, for example learing rate and number of epochs
 
 
 
