@@ -260,10 +260,10 @@ Model saved
 Training time:  67  seconds
 </code></pre>
 ![alt text][image8]
-* Result:
-  + Test Accuracy = 0.912
-  + Train Accuracy = 0.995
-  + Validation Accuracy = 0.941
+
+Test Accuracy = 0.912
+Train Accuracy = 0.995
+Validation Accuracy = 0.941
 
 * Training Modified_LeNet
 <pre><code>
@@ -281,12 +281,13 @@ EPOCH 9 ...Validation accuracy = 0.947...training time: 6 s
 EPOCH 10 ...Validation accuracy = 0.944...training time: 7 s
 Model saved
 Training time:  79  seconds
+
+Test Accuracy = 0.935
+Train Accuracy = 0.999
+Validation Accuracy = 0.944
 </code></pre>
 ![alt text][image9]
-* Result:
-  + Test Accuracy = 0.935
-  + Train Accuracy = 0.999
-  + Validation Accuracy = 0.944
+
 
 * Training Modified_LeNet_1
 <pre><code>
@@ -304,12 +305,13 @@ EPOCH 9 ...Validation accuracy = 0.924...training time: 6 s
 EPOCH 10 ...Validation accuracy = 0.932...training time: 6 s
 Model saved
 Training time:  84  seconds
+
+Test Accuracy = 0.916
+Train Accuracy = 0.992
+Validation Accuracy = 0.933
 </code></pre>
 ![alt text][image10]
-* Result:
-  + Test Accuracy = 0.916
-  + Train Accuracy = 0.992
-  + Validation Accuracy = 0.933
+
   
 * Training Modified_LeNet_2
 <pre><code>
@@ -327,12 +329,13 @@ EPOCH 9 ...Validation accuracy = 0.887...training time: 8 s
 EPOCH 10 ...Validation accuracy = 0.887...training time: 8 s
 Model saved
 Training time:  100  seconds
+
+Test Accuracy = 0.893
+Train Accuracy = 0.983
+Validation Accuracy = 0.886
 </code></pre>
 ![alt text][image11]
-* Result:
-  + Test Accuracy = 0.893
-  + Train Accuracy = 0.983
-  + Validation Accuracy = 0.886
+
 
 
 
