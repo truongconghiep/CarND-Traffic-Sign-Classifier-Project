@@ -24,6 +24,8 @@ The goals / steps of this project are the following:
 [image6]: ./write_up/NormalizedImages.jpg "Normalized images"
 [image7]:  ./write_up/AugmentedDataBarchart.jpg "Augmented image data"
 [image8]:  ./write_up/TrainingLenetEpoch10.jpg "Training LeNet Epoch = 10"
+[image9]:  ./write_up/TrainingModified_LenetEpoch10.jpg "Training Modified_LeNet Epoch = 10"
+[image10]:  ./write_up/TrainingModiied_Lenet_1Epoch10.jpg "Training Modified_LeNet_1 Epoch = 10"
 
 
 
@@ -236,7 +238,7 @@ To train the model, I used an ....
 #### 4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
 
 ##### Step 1: evaluate the models
-* In this step I train all models with a small number of epoch to evaluate the model performance. Chosen parameters of traning is:
+* In this step I train all models with a small number of epoch to evaluate the model performance, then to choose the final model. Chosen parameters of traning is:
   + Epoch: 10
   + Training rate: 0.0009
 * Training LeNet:
@@ -261,6 +263,56 @@ Training time:  67  seconds
   + Test Accuracy = 0.912
   + Train Accuracy = 0.995
   + Validation Accuracy = 0.941
+
+* Training Modified_LeNet
+<pre><code>
+Training...
+
+EPOCH 1 ...Validation accuracy = 0.881...training time: 6 s
+EPOCH 2 ...Validation accuracy = 0.919...training time: 6 s
+EPOCH 3 ...Validation accuracy = 0.934...training time: 6 s
+EPOCH 4 ...Validation accuracy = 0.942...training time: 6 s
+EPOCH 5 ...Validation accuracy = 0.943...training time: 5 s
+EPOCH 6 ...Validation accuracy = 0.949...training time: 5 s
+EPOCH 7 ...Validation accuracy = 0.941...training time: 5 s
+EPOCH 8 ...Validation accuracy = 0.951...training time: 6 s
+EPOCH 9 ...Validation accuracy = 0.947...training time: 6 s
+EPOCH 10 ...Validation accuracy = 0.944...training time: 7 s
+Model saved
+Training time:  79  seconds
+</code></pre>
+![alt text][image9]
+* Result:
+  + Test Accuracy = 0.935
+  + Train Accuracy = 0.999
+  + Validation Accuracy = 0.944
+
+* Training Modified_LeNet_1
+<pre><code>
+</code></pre>
+* Training Modified_LeNet_2
+<pre><code>
+Training...
+
+EPOCH 1 ...Validation accuracy = 0.849...training time: 7 s
+EPOCH 2 ...Validation accuracy = 0.892...training time: 7 s
+EPOCH 3 ...Validation accuracy = 0.905...training time: 7 s
+EPOCH 4 ...Validation accuracy = 0.910...training time: 6 s
+EPOCH 5 ...Validation accuracy = 0.924...training time: 7 s
+EPOCH 6 ...Validation accuracy = 0.925...training time: 7 s
+EPOCH 7 ...Validation accuracy = 0.930...training time: 7 s
+EPOCH 8 ...Validation accuracy = 0.926...training time: 7 s
+EPOCH 9 ...Validation accuracy = 0.924...training time: 6 s
+EPOCH 10 ...Validation accuracy = 0.932...training time: 6 s
+Model saved
+Training time:  84  seconds
+</code></pre>
+![alt text][image10]
+* Result:
+  + Test Accuracy = 0.916
+  + Train Accuracy = 0.992
+  + Validation Accuracy = 0.933
+
 
 My final model results were:
 * training set accuracy of ?
