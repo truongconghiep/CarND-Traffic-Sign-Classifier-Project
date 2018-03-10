@@ -258,12 +258,14 @@ EPOCH 9 ...Validation accuracy = 0.921...training time: 5 s
 EPOCH 10 ...Validation accuracy = 0.941...training time: 6 s
 Model saved
 Training time:  67  seconds
-</code></pre>
-![alt text][image8]
 
 Test Accuracy = 0.912
 Train Accuracy = 0.995
 Validation Accuracy = 0.941
+</code></pre>
+![alt text][image8]
+
+
 
 * Training Modified_LeNet
 <pre><code>
