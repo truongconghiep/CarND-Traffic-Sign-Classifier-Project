@@ -26,6 +26,7 @@ The goals / steps of this project are the following:
 [image8]:  ./write_up/TrainingLenetEpoch10.jpg "Training LeNet Epoch = 10"
 [image9]:  ./write_up/TrainingModified_LenetEpoch10.jpg "Training Modified_LeNet Epoch = 10"
 [image10]:  ./write_up/TrainingModiied_Lenet_1Epoch10.jpg "Training Modified_LeNet_1 Epoch = 10"
+[image11]:  ./write_up/TrainingModiied_Lenet_2Epoch10.jpg "Training Modified_LeNet_2 Epoch = 10"
 
 
 
@@ -289,9 +290,6 @@ Training time:  79  seconds
 
 * Training Modified_LeNet_1
 <pre><code>
-</code></pre>
-* Training Modified_LeNet_2
-<pre><code>
 Training...
 
 EPOCH 1 ...Validation accuracy = 0.849...training time: 7 s
@@ -312,6 +310,30 @@ Training time:  84  seconds
   + Test Accuracy = 0.916
   + Train Accuracy = 0.992
   + Validation Accuracy = 0.933
+  
+* Training Modified_LeNet_2
+<pre><code>
+Training...
+
+EPOCH 1 ...Validation accuracy = 0.745...training time: 8 s
+EPOCH 2 ...Validation accuracy = 0.826...training time: 8 s
+EPOCH 3 ...Validation accuracy = 0.843...training time: 8 s
+EPOCH 4 ...Validation accuracy = 0.855...training time: 8 s
+EPOCH 5 ...Validation accuracy = 0.875...training time: 8 s
+EPOCH 6 ...Validation accuracy = 0.877...training time: 7 s
+EPOCH 7 ...Validation accuracy = 0.881...training time: 7 s
+EPOCH 8 ...Validation accuracy = 0.885...training time: 8 s
+EPOCH 9 ...Validation accuracy = 0.887...training time: 8 s
+EPOCH 10 ...Validation accuracy = 0.887...training time: 8 s
+Model saved
+Training time:  100  seconds
+</code></pre>
+![alt text][image11]
+* Result:
+  + Test Accuracy = 0.893
+  + Train Accuracy = 0.983
+  + Validation Accuracy = 0.886
+
 
 
 My final model results were:
