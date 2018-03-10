@@ -26,8 +26,7 @@ The goals / steps of this project are the following:
 [image9]:  ./write_up/TrainingModified_LenetEpoch10.jpg "Training Modified_LeNet Epoch = 10"
 [image10]:  ./write_up/TrainingModified_Lenet_1_Epoch10.jpg "Training Modified_LeNet_1 Epoch = 10"
 [image11]:  ./write_up/TrainingModiied_Lenet_2Epoch10.jpg "Training Modified_LeNet_2 Epoch = 10"
-
-
+[image12]:  ./write_up/Final_Training.jpg "Final training"
 
 ---
 ### Writeup / README
@@ -338,14 +337,220 @@ Validation Accuracy = 0.886
 
 Based on the performance evaluation above I choose the "Modified_LeNet" model as my final model
 ##### Step 2: Train the final model
-* In this step I train my final model with different traning parameter, for example learing rate and number of epochs
+* In this step I train my final model with bigger number of epochs: EPOCH = 200
 
+<code><pre>
+Training...
 
+EPOCH 1 ...Validation accuracy = 0.863...training time: 7 s
+EPOCH 2 ...Validation accuracy = 0.907...training time: 7 s
+EPOCH 3 ...Validation accuracy = 0.926...training time: 6 s
+EPOCH 4 ...Validation accuracy = 0.949...training time: 7 s
+EPOCH 5 ...Validation accuracy = 0.944...training time: 7 s
+EPOCH 6 ...Validation accuracy = 0.954...training time: 7 s
+EPOCH 7 ...Validation accuracy = 0.953...training time: 6 s
+EPOCH 8 ...Validation accuracy = 0.959...training time: 5 s
+EPOCH 9 ...Validation accuracy = 0.947...training time: 6 s
+EPOCH 10 ...Validation accuracy = 0.954...training time: 7 s
+EPOCH 11 ...Validation accuracy = 0.952...training time: 6 s
+EPOCH 12 ...Validation accuracy = 0.949...training time: 6 s
+EPOCH 13 ...Validation accuracy = 0.959...training time: 6 s
+EPOCH 14 ...Validation accuracy = 0.941...training time: 6 s
+EPOCH 15 ...Validation accuracy = 0.956...training time: 6 s
+EPOCH 16 ...Validation accuracy = 0.961...training time: 6 s
+EPOCH 17 ...Validation accuracy = 0.963...training time: 5 s
+EPOCH 18 ...Validation accuracy = 0.963...training time: 5 s
+EPOCH 19 ...Validation accuracy = 0.971...training time: 7 s
+EPOCH 20 ...Validation accuracy = 0.963...training time: 7 s
+EPOCH 21 ...Validation accuracy = 0.967...training time: 7 s
+EPOCH 22 ...Validation accuracy = 0.973...training time: 7 s
+EPOCH 23 ...Validation accuracy = 0.961...training time: 6 s
+EPOCH 24 ...Validation accuracy = 0.963...training time: 7 s
+EPOCH 25 ...Validation accuracy = 0.971...training time: 6 s
+EPOCH 26 ...Validation accuracy = 0.964...training time: 6 s
+EPOCH 27 ...Validation accuracy = 0.967...training time: 6 s
+EPOCH 28 ...Validation accuracy = 0.967...training time: 6 s
+EPOCH 29 ...Validation accuracy = 0.968...training time: 6 s
+EPOCH 30 ...Validation accuracy = 0.967...training time: 6 s
+EPOCH 31 ...Validation accuracy = 0.965...training time: 6 s
+EPOCH 32 ...Validation accuracy = 0.962...training time: 6 s
+EPOCH 33 ...Validation accuracy = 0.970...training time: 6 s
+EPOCH 34 ...Validation accuracy = 0.967...training time: 5 s
+EPOCH 35 ...Validation accuracy = 0.974...training time: 5 s
+EPOCH 36 ...Validation accuracy = 0.964...training time: 6 s
+EPOCH 37 ...Validation accuracy = 0.955...training time: 6 s
+EPOCH 38 ...Validation accuracy = 0.970...training time: 6 s
+EPOCH 39 ...Validation accuracy = 0.974...training time: 7 s
+EPOCH 40 ...Validation accuracy = 0.974...training time: 6 s
+EPOCH 41 ...Validation accuracy = 0.970...training time: 6 s
+EPOCH 42 ...Validation accuracy = 0.968...training time: 7 s
+EPOCH 43 ...Validation accuracy = 0.971...training time: 6 s
+EPOCH 44 ...Validation accuracy = 0.973...training time: 6 s
+EPOCH 45 ...Validation accuracy = 0.970...training time: 6 s
+EPOCH 46 ...Validation accuracy = 0.967...training time: 6 s
+EPOCH 47 ...Validation accuracy = 0.973...training time: 6 s
+EPOCH 48 ...Validation accuracy = 0.973...training time: 6 s
+EPOCH 49 ...Validation accuracy = 0.968...training time: 5 s
+EPOCH 50 ...Validation accuracy = 0.971...training time: 5 s
+EPOCH 51 ...Validation accuracy = 0.967...training time: 5 s
+EPOCH 52 ...Validation accuracy = 0.966...training time: 5 s
+EPOCH 53 ...Validation accuracy = 0.968...training time: 5 s
+EPOCH 54 ...Validation accuracy = 0.973...training time: 5 s
+EPOCH 55 ...Validation accuracy = 0.968...training time: 5 s
+EPOCH 56 ...Validation accuracy = 0.968...training time: 5 s
+EPOCH 57 ...Validation accuracy = 0.974...training time: 5 s
+EPOCH 58 ...Validation accuracy = 0.968...training time: 5 s
+EPOCH 59 ...Validation accuracy = 0.970...training time: 5 s
+EPOCH 60 ...Validation accuracy = 0.973...training time: 5 s
+EPOCH 61 ...Validation accuracy = 0.968...training time: 5 s
+EPOCH 62 ...Validation accuracy = 0.974...training time: 5 s
+EPOCH 63 ...Validation accuracy = 0.966...training time: 5 s
+EPOCH 64 ...Validation accuracy = 0.963...training time: 5 s
+EPOCH 65 ...Validation accuracy = 0.974...training time: 5 s
+EPOCH 66 ...Validation accuracy = 0.975...training time: 5 s
+EPOCH 67 ...Validation accuracy = 0.976...training time: 5 s
+EPOCH 68 ...Validation accuracy = 0.971...training time: 5 s
+EPOCH 69 ...Validation accuracy = 0.971...training time: 5 s
+EPOCH 70 ...Validation accuracy = 0.969...training time: 5 s
+EPOCH 71 ...Validation accuracy = 0.969...training time: 5 s
+EPOCH 72 ...Validation accuracy = 0.973...training time: 5 s
+EPOCH 73 ...Validation accuracy = 0.976...training time: 5 s
+EPOCH 74 ...Validation accuracy = 0.968...training time: 5 s
+EPOCH 75 ...Validation accuracy = 0.971...training time: 5 s
+EPOCH 76 ...Validation accuracy = 0.978...training time: 5 s
+EPOCH 77 ...Validation accuracy = 0.968...training time: 5 s
+EPOCH 78 ...Validation accuracy = 0.972...training time: 5 s
+EPOCH 79 ...Validation accuracy = 0.969...training time: 5 s
+EPOCH 80 ...Validation accuracy = 0.971...training time: 5 s
+EPOCH 81 ...Validation accuracy = 0.970...training time: 5 s
+EPOCH 82 ...Validation accuracy = 0.967...training time: 5 s
+EPOCH 83 ...Validation accuracy = 0.970...training time: 5 s
+EPOCH 84 ...Validation accuracy = 0.979...training time: 5 s
+EPOCH 85 ...Validation accuracy = 0.978...training time: 5 s
+EPOCH 86 ...Validation accuracy = 0.955...training time: 5 s
+EPOCH 87 ...Validation accuracy = 0.968...training time: 5 s
+EPOCH 88 ...Validation accuracy = 0.976...training time: 5 s
+EPOCH 89 ...Validation accuracy = 0.975...training time: 5 s
+EPOCH 90 ...Validation accuracy = 0.977...training time: 6 s
+EPOCH 91 ...Validation accuracy = 0.976...training time: 5 s
+EPOCH 92 ...Validation accuracy = 0.976...training time: 5 s
+EPOCH 93 ...Validation accuracy = 0.969...training time: 5 s
+EPOCH 94 ...Validation accuracy = 0.967...training time: 5 s
+EPOCH 95 ...Validation accuracy = 0.960...training time: 5 s
+EPOCH 96 ...Validation accuracy = 0.963...training time: 6 s
+EPOCH 97 ...Validation accuracy = 0.976...training time: 6 s
+EPOCH 98 ...Validation accuracy = 0.973...training time: 5 s
+EPOCH 99 ...Validation accuracy = 0.972...training time: 6 s
+EPOCH 100 ...Validation accuracy = 0.976...training time: 6 s
+EPOCH 101 ...Validation accuracy = 0.964...training time: 5 s
+EPOCH 102 ...Validation accuracy = 0.969...training time: 5 s
+EPOCH 103 ...Validation accuracy = 0.975...training time: 5 s
+EPOCH 104 ...Validation accuracy = 0.973...training time: 5 s
+EPOCH 105 ...Validation accuracy = 0.974...training time: 5 s
+EPOCH 106 ...Validation accuracy = 0.965...training time: 6 s
+EPOCH 107 ...Validation accuracy = 0.972...training time: 6 s
+EPOCH 108 ...Validation accuracy = 0.978...training time: 6 s
+EPOCH 109 ...Validation accuracy = 0.973...training time: 6 s
+EPOCH 110 ...Validation accuracy = 0.971...training time: 6 s
+EPOCH 111 ...Validation accuracy = 0.972...training time: 6 s
+EPOCH 112 ...Validation accuracy = 0.975...training time: 6 s
+EPOCH 113 ...Validation accuracy = 0.971...training time: 6 s
+EPOCH 114 ...Validation accuracy = 0.979...training time: 6 s
+EPOCH 115 ...Validation accuracy = 0.973...training time: 6 s
+EPOCH 116 ...Validation accuracy = 0.977...training time: 6 s
+EPOCH 117 ...Validation accuracy = 0.967...training time: 6 s
+EPOCH 118 ...Validation accuracy = 0.981...training time: 6 s
+EPOCH 119 ...Validation accuracy = 0.974...training time: 6 s
+EPOCH 120 ...Validation accuracy = 0.978...training time: 6 s
+EPOCH 121 ...Validation accuracy = 0.969...training time: 5 s
+EPOCH 122 ...Validation accuracy = 0.966...training time: 6 s
+EPOCH 123 ...Validation accuracy = 0.970...training time: 6 s
+EPOCH 124 ...Validation accuracy = 0.978...training time: 6 s
+EPOCH 125 ...Validation accuracy = 0.977...training time: 6 s
+EPOCH 126 ...Validation accuracy = 0.978...training time: 5 s
+EPOCH 127 ...Validation accuracy = 0.973...training time: 6 s
+EPOCH 128 ...Validation accuracy = 0.967...training time: 5 s
+EPOCH 129 ...Validation accuracy = 0.978...training time: 5 s
+EPOCH 130 ...Validation accuracy = 0.981...training time: 5 s
+EPOCH 131 ...Validation accuracy = 0.970...training time: 6 s
+EPOCH 132 ...Validation accuracy = 0.975...training time: 6 s
+EPOCH 133 ...Validation accuracy = 0.973...training time: 6 s
+EPOCH 134 ...Validation accuracy = 0.975...training time: 6 s
+EPOCH 135 ...Validation accuracy = 0.970...training time: 6 s
+EPOCH 136 ...Validation accuracy = 0.977...training time: 5 s
+EPOCH 137 ...Validation accuracy = 0.970...training time: 6 s
+EPOCH 138 ...Validation accuracy = 0.975...training time: 6 s
+EPOCH 139 ...Validation accuracy = 0.979...training time: 6 s
+EPOCH 140 ...Validation accuracy = 0.977...training time: 6 s
+EPOCH 141 ...Validation accuracy = 0.976...training time: 6 s
+EPOCH 142 ...Validation accuracy = 0.973...training time: 6 s
+EPOCH 143 ...Validation accuracy = 0.969...training time: 6 s
+EPOCH 144 ...Validation accuracy = 0.979...training time: 5 s
+EPOCH 145 ...Validation accuracy = 0.980...training time: 5 s
+EPOCH 146 ...Validation accuracy = 0.978...training time: 6 s
+EPOCH 147 ...Validation accuracy = 0.974...training time: 6 s
+EPOCH 148 ...Validation accuracy = 0.978...training time: 5 s
+EPOCH 149 ...Validation accuracy = 0.976...training time: 5 s
+EPOCH 150 ...Validation accuracy = 0.979...training time: 5 s
+EPOCH 151 ...Validation accuracy = 0.974...training time: 5 s
+EPOCH 152 ...Validation accuracy = 0.976...training time: 6 s
+EPOCH 153 ...Validation accuracy = 0.978...training time: 5 s
+EPOCH 154 ...Validation accuracy = 0.979...training time: 6 s
+EPOCH 155 ...Validation accuracy = 0.976...training time: 5 s
+EPOCH 156 ...Validation accuracy = 0.980...training time: 5 s
+EPOCH 157 ...Validation accuracy = 0.979...training time: 5 s
+EPOCH 158 ...Validation accuracy = 0.979...training time: 5 s
+EPOCH 159 ...Validation accuracy = 0.978...training time: 6 s
+EPOCH 160 ...Validation accuracy = 0.973...training time: 6 s
+EPOCH 161 ...Validation accuracy = 0.979...training time: 6 s
+EPOCH 162 ...Validation accuracy = 0.975...training time: 5 s
+EPOCH 163 ...Validation accuracy = 0.974...training time: 5 s
+EPOCH 164 ...Validation accuracy = 0.977...training time: 5 s
+EPOCH 165 ...Validation accuracy = 0.978...training time: 6 s
+EPOCH 166 ...Validation accuracy = 0.977...training time: 5 s
+EPOCH 167 ...Validation accuracy = 0.973...training time: 6 s
+EPOCH 168 ...Validation accuracy = 0.977...training time: 6 s
+EPOCH 169 ...Validation accuracy = 0.976...training time: 6 s
+EPOCH 170 ...Validation accuracy = 0.982...training time: 6 s
+EPOCH 171 ...Validation accuracy = 0.971...training time: 6 s
+EPOCH 172 ...Validation accuracy = 0.978...training time: 6 s
+EPOCH 173 ...Validation accuracy = 0.978...training time: 6 s
+EPOCH 174 ...Validation accuracy = 0.974...training time: 5 s
+EPOCH 175 ...Validation accuracy = 0.974...training time: 6 s
+EPOCH 176 ...Validation accuracy = 0.972...training time: 6 s
+EPOCH 177 ...Validation accuracy = 0.976...training time: 6 s
+EPOCH 178 ...Validation accuracy = 0.979...training time: 6 s
+EPOCH 179 ...Validation accuracy = 0.974...training time: 5 s
+EPOCH 180 ...Validation accuracy = 0.968...training time: 5 s
+EPOCH 181 ...Validation accuracy = 0.978...training time: 6 s
+EPOCH 182 ...Validation accuracy = 0.978...training time: 5 s
+EPOCH 183 ...Validation accuracy = 0.981...training time: 5 s
+EPOCH 184 ...Validation accuracy = 0.980...training time: 5 s
+EPOCH 185 ...Validation accuracy = 0.982...training time: 6 s
+EPOCH 186 ...Validation accuracy = 0.982...training time: 5 s
+EPOCH 187 ...Validation accuracy = 0.979...training time: 5 s
+EPOCH 188 ...Validation accuracy = 0.969...training time: 6 s
+EPOCH 189 ...Validation accuracy = 0.970...training time: 5 s
+EPOCH 190 ...Validation accuracy = 0.979...training time: 5 s
+EPOCH 191 ...Validation accuracy = 0.968...training time: 5 s
+EPOCH 192 ...Validation accuracy = 0.974...training time: 6 s
+EPOCH 193 ...Validation accuracy = 0.977...training time: 5 s
+EPOCH 194 ...Validation accuracy = 0.977...training time: 5 s
+EPOCH 195 ...Validation accuracy = 0.979...training time: 6 s
+EPOCH 196 ...Validation accuracy = 0.973...training time: 5 s
+EPOCH 197 ...Validation accuracy = 0.974...training time: 6 s
+EPOCH 198 ...Validation accuracy = 0.976...training time: 6 s
+EPOCH 199 ...Validation accuracy = 0.978...training time: 6 s
+EPOCH 200 ...Validation accuracy = 0.975...training time: 6 s
+Model saved
+Training time:  1228  seconds
+</pre></code>
+![alt text][image12]
 
 My final model results were:
-* training set accuracy of ?
-* validation set accuracy of ? 
-* test set accuracy of ?
+* training set accuracy of 1.000 (100 %)
+* validation set accuracy of 0.975 (97.5 %)
+* test set accuracy of 0.959 (95.9 %)
 
 If an iterative approach was chosen:
 * What was the first architecture that was tried and why was it chosen?
