@@ -613,18 +613,22 @@ Total accuracy = 90.0 %
 
 The code for making predictions on my final model is located in the 11th cell of the Ipython notebook.
 
-For the first image, the model is relatively sure that this is a stop sign (probability of 0.6), and the image does contain a stop sign. The top five soft max probabilities were
 
-| Probability         	|     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| .60         			| Stop sign   									| 
-| .20     				| U-turn 										|
-| .05					| Yield											|
-| .04	      			| Bumpy Road					 				|
-| .01				    | Slippery Road      							|
+| sign num |                          softmax probabilities                           |  indices   |
+|:--------:|:------------------------------------------------------------------------:|:----------:|
+|    1     |                 1.00000 0.00000 0.00000 0.00000 0.00000                  | 34 0 1 2 3 |
+|    2     |                 1.00000 0.00000 0.00000 0.00000 0.00000                  | 2 1 0 3 4  |
+|    3     |                 1.00000 0.00000 0.00000 0.00000 0.00000                  | 35 0 1 2 3 |
+|    4     |                 1.00000 0.00000 0.00000 0.00000 0.00000                  | 13 0 1 2 3 |
+|    5     |                 1.00000 0.00000 0.00000 0.00000 0.00000                  | 2 0 1 3 4  |
+|    6     |                 1.00000 0.00000 0.00000 0.00000 0.00000                  | 4 0 1 2 3  |
+|    7     |                 1.00000 0.00000 0.00000 0.00000 0.00000                  | 13 0 1 2 3 |
+|    8     |                 1.00000 0.00000 0.00000 0.00000 0.00000                  | 13 0 1 2 3 |
+|    9     |                 1.00000 0.00000 0.00000 0.00000 0.00000                  | 2 0 1 3 4  |
+|    10    |                 1.00000 0.00000 0.00000 0.00000 0.00000                  | 12 0 1 2 3 |
 
 
-For the second image ... 
+For all images the model is very confident about the prediction results, however the prediction of the tenth image is wrong. The reason of the wrong prediction might be the low brightness on the image
 
 ### (Optional) Visualizing the Neural Network (See Step 4 of the Ipython notebook for more details)
 #### 1. Discuss the visual output of your trained network's feature maps. What characteristics did the neural network use to make classifications?
