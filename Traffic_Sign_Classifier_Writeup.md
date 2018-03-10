@@ -27,6 +27,7 @@ The goals / steps of this project are the following:
 [image10]:  ./write_up/TrainingModified_Lenet_1_Epoch10.jpg "Training Modified_LeNet_1 Epoch = 10"
 [image11]:  ./write_up/TrainingModiied_Lenet_2Epoch10.jpg "Training Modified_LeNet_2 Epoch = 10"
 [image12]:  ./write_up/Final_Training.jpg "Final training"
+[image13]:  ./write_up/TestImages.jpg "Test images"
 
 ---
 ### Writeup / README
@@ -569,10 +570,9 @@ If a well known architecture was chosen:
 
 #### 1. Choose five German traffic signs found on the web and provide them in the report. For each image, discuss what quality or qualities might be difficult to classify.
 
-Here are five German traffic signs that I found on the web:
+Here are ten German traffic signs that I found on the web:
 
-![alt text][image4] ![alt text][image5] ![alt text][image6] 
-![alt text][image7] ![alt text][image8]
+![alt text][image13]
 
 The first image might be difficult to classify because ...
 
