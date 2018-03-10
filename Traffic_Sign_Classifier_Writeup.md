@@ -23,7 +23,7 @@ The goals / steps of this project are the following:
 [image5]: ./write_up/GrayscaledImages.jpg "Grayscaled images"
 [image6]: ./write_up/NormalizedImages.jpg "Normalized images"
 [image7]:  ./write_up/AugmentedDataBarchart.jpg "Augmented image data"
-[image8]:  ./write_up/"TrainingLenetEpoch10.jpg"Training LeNet Epoch = 10"
+[image8]:  ./write_up/"TrainingLenetEpoch10.jpg" Training LeNet Epoch = 10"
 
 
 
