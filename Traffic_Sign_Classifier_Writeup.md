@@ -336,7 +336,7 @@ Validation Accuracy = 0.886
 </code></pre>
 ![alt text][image11]
 
-Based on the performance evaluation above I choose the "Modified_LeNet" model as my final model
+Based on the performance evaluation above I choose the "Modified_LeNet" model, which has highest accuracy as my final model
 ##### Step 2: Train the final model
 * In this step I train my final model with bigger number of epochs: 
   + EPOCH = 200
