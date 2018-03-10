@@ -338,7 +338,9 @@ Validation Accuracy = 0.886
 
 Based on the performance evaluation above I choose the "Modified_LeNet" model as my final model
 ##### Step 2: Train the final model
-* In this step I train my final model with bigger number of epochs: EPOCH = 200
+* In this step I train my final model with bigger number of epochs: 
+  + EPOCH = 200
+  + Learing rate = 0.0009
 
 <code><pre>
 Training...
@@ -560,10 +562,6 @@ If an iterative approach was chosen:
 * Which parameters were tuned? How were they adjusted and why?
 * What are some of the important design choices and why were they chosen? For example, why might a convolution layer work well with this problem? How might a dropout layer help with creating a successful model?
 
-If a well known architecture was chosen:
-* What architecture was chosen?
-* Why did you believe it would be relevant to the traffic sign application?
-* How does the final model's accuracy on the training, validation and test set provide evidence that the model is working well?
  
 
 ### Test a Model on New Images
@@ -574,22 +572,42 @@ Here are ten German traffic signs that I found on the web:
 
 ![alt text][image13]
 
-The first image might be difficult to classify because ...
+As we see in the test images, the brightness changes through the images in a wide range, for example it is very light in the first image, but very dark in the sixth and tenth image. That is very difficut for the classifier to predict these images.
 
 #### 2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).
 
 Here are the results of the prediction:
 
-| Image			        |     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| Stop Sign      		| Stop sign   									| 
-| U-turn     			| U-turn 										|
-| Yield					| Yield											|
-| 100 km/h	      		| Bumpy Road					 				|
-| Slippery Road			| Slippery Road      							|
+| Sign number | predicted label |      annotation      |
+|:-----------:|:---------------:|:--------------------:|
+|      1      |       34        |   Turn left ahead    |
+|      2      |        2        | Speed limit (50km/h) |
+|      3      |       35        |      Ahead only      |
+|      4      |       13        |        Yield         |
+|      5      |        2        | Speed limit (50km/h) |
+|      6      |        4        | Speed limit (70km/h) |
+|      7      |       13        |        Yield         |
+|      8      |       13        |        Yield         |
+|      9      |        2        | Speed limit (50km/h) |
+|     10      |       12        |    Priority road     |
 
 
-The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of ...
+The model was able to correctly guess 9 of the 10 traffic signs, which gives an accuracy of 90%. This compares favorably to the accuracy on the test set of 95,9 %
+
+Total accuracy = 90.0 %
+
+| expected label | predicted label | result  |
+|:--------------:|:---------------:|:-------:|
+|       34       |       34        | correct |
+|       2        |        2        | correct |
+|       35       |       35        | correct |
+|       13       |       13        | correct |
+|       2        |        2        | correct |
+|       4        |        4        | correct |
+|       13       |       13        | correct |
+|       13       |       13        | correct |
+|       2        |        2        | correct |
+|       7        |       12        |  wrong  |
 
 #### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
 
