@@ -25,7 +25,7 @@ The goals / steps of this project are the following:
 [image7]:  ./write_up/AugmentedDataBarchart.jpg "Augmented image data"
 [image8]:  ./write_up/TrainingLenetEpoch10.jpg "Training LeNet Epoch = 10"
 [image9]:  ./write_up/TrainingModified_LenetEpoch10.jpg "Training Modified_LeNet Epoch = 10"
-[image10]:  ./write_up/TrainingModiied_Lenet_1_Epoch10.jpg "Training Modified_LeNet_1 Epoch = 10"
+[image10]:  ./write_up/TrainingModified_Lenet_1_Epoch10.jpg "Training Modified_LeNet_1 Epoch = 10"
 [image11]:  ./write_up/TrainingModiied_Lenet_2Epoch10.jpg "Training Modified_LeNet_2 Epoch = 10"
 
 
