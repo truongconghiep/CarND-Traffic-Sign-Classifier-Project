@@ -23,6 +23,7 @@ The goals / steps of this project are the following:
 [image5]: ./write_up/GrayscaledImages.jpg "Grayscaled images"
 [image6]: ./write_up/NormalizedImages.jpg "Normalized images"
 [image7]:  ./write_up/AugmentedDataBarchart.jpg "Augmented image data"
+[image8]:  ./write_up/"TrainingLenetEpoch10.jpg"Training LeNet Epoch = 10"
 
 
 ## Rubric Points
@@ -315,14 +316,40 @@ My final model consisted of the following layers:
 
 To train the model, I used an ....
 
-  EPOCHS = 200
-  BATCH_SIZE = 128
-  rate = 0.0009
-  and Adam optimizer 
+  * EPOCHS = 200
+  * BATCH_SIZE = 128
+  * rate = 0.0009
+  * and Adam optimizer 
 
 
 #### 4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
 
+##### Step 1: evaluate the models
+* In this step I train all models with a small number of epoch to evaluate the model performance. Chosen parameters of traning is:
+  + Epoch: 10
+  + Training rate: 0.0009
+* Training LeNet:
+<pre><code>
+Training...
+
+EPOCH 1 ...Validation accuracy = 0.798...training time: 6 s
+EPOCH 2 ...Validation accuracy = 0.864...training time: 6 s
+EPOCH 3 ...Validation accuracy = 0.896...training time: 5 s
+EPOCH 4 ...Validation accuracy = 0.904...training time: 5 s
+EPOCH 5 ...Validation accuracy = 0.904...training time: 5 s
+EPOCH 6 ...Validation accuracy = 0.920...training time: 5 s
+EPOCH 7 ...Validation accuracy = 0.919...training time: 6 s
+EPOCH 8 ...Validation accuracy = 0.921...training time: 6 s
+EPOCH 9 ...Validation accuracy = 0.921...training time: 5 s
+EPOCH 10 ...Validation accuracy = 0.941...training time: 6 s
+Model saved
+Training time:  67  seconds
+</code></pre>
+![alt text][image8]
+* Result:
+  + Test Accuracy = 0.912
+  + Train Accuracy = 0.995
+  + Validation Accuracy = 0.941
 
 My final model results were:
 * training set accuracy of ?
