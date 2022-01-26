@@ -13,13 +13,14 @@ import tensorflow as tf
 import random
 import math
 import keras
-from scipy.misc import imread
+# from scipy.misc import imread
+from imageio import imread
 from sklearn.utils import shuffle
 from keras.preprocessing.image import ImageDataGenerator, array_to_img, img_to_array, load_img
 from keras import backend as K
 from beautifultable import BeautifulTable
 
-K.set_image_dim_ordering('th')
+K.set_image_data_format('channels_first')
 
 ###############################  Basic functions #########################################################################
 def Read_Data_From_Pickle(file_name):
@@ -301,6 +302,7 @@ def Image_Augmentation(Original_Dataset_Train, Original_Dataset_Labels):
     max_sample_num = max(number_samples_per_class)
     #iterate over all labels
     for label in range(0,n_class):
+        print("label ", label)
         generated_labels = []
         extracted_Train = extract_data_Subset(brightness_augment, Original_Dataset_Labels, label)
         number_of_new_images = int((max_sample_num - number_samples_per_class[label]))
@@ -331,3 +333,41 @@ def Data_Normalization(data):
             return normalised images
     """
     return data/255 - 0.5
+
+
+class data_augmentation:
+    def __init__ (self, path_to_train_data, path_to_validation_data, path_to_test_data):
+        self.X_train, self.y_train = Read_Data_From_Pickle(path_to_train_data)
+        self.X_valid, self.y_valid = Read_Data_From_Pickle(path_to_validation_data)
+        self.X_test, self.y_test = Read_Data_From_Pickle(path_to_test_data)
+        # Read csv data      
+        SignName_SvcFileName = './signnames.csv'
+        self.sign_names = Read_Csv(SignName_SvcFileName, 1, ',')
+        # visualize the original data set
+        Data_Visualisation([self.y_train, self.y_test, self.y_valid], self.sign_names)
+
+    def augment_data(self):
+        Augmentation_start_time = datetime.datetime.now()
+        # augment the data set
+        X_train, y_train = Image_Augmentation(self.X_train, self.y_train)
+        # visualize augmented data
+        Data_Visualisation([self.y_train, self.y_test, self.y_valid], self.sign_names)
+
+        print("converting to grayscale")
+        # convert the data set to grayscale
+        X_train = Convert_Data_To_GrayScale(X_train)
+        X_test = Convert_Data_To_GrayScale(self.X_test)
+        X_valid = Convert_Data_To_GrayScale(self.X_valid)
+
+        # Normalize the grayscale data set
+        print("normalizing")
+        X_train = Data_Normalization(X_train)
+        X_test = Data_Normalization(X_test)
+        X_valid = Data_Normalization(X_valid)
+        print("Augmentation time: ", Calculate_Time_Diff_Up_To_Now_in_second(Augmentation_start_time), " seconds")
+
+    def save_augmented_data(self, train_filename, validation_filename, test_filename):
+        Write_Data_To_Pickle({"features":self.X_train,"labels":self.y_train}, train_filename)
+        Write_Data_To_Pickle({"features":self.X_valid,"labels":self.y_valid}, validation_filename)
+        Write_Data_To_Pickle({"features":self.X_test,"labels":self.y_test}, test_filename)
+    
