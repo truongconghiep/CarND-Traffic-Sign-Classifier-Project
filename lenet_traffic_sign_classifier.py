@@ -1,8 +1,11 @@
 from signal import Sigmasks
 from torch import mul
 from Traffic_Sign_Classifier import *
-from tensorflow.contrib.layers import flatten
+from tensorflow.keras.layers import Flatten
 import glob
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
+
 
 class lenet_traffic_sign_classifier:
     def __init__ (self, mu=0, sigma=0.1, num_of_channel = 3, num_of_output_class = 43, \
@@ -16,19 +19,19 @@ class lenet_traffic_sign_classifier:
         self.rate = rate
 
 
-    def convolution(x, shape = None,strides = None, padding = 'VALID', mu = 0, sigma = 0.1):
-        conv_W = tf.Variable(tf.truncated_normal(shape=shape, mean = mu, stddev = sigma))
+    def convolution(self, x=None, shape = None, strides = None, padding = 'VALID'):
+        conv_W = tf.Variable(tf.truncated_normal(shape=shape, mean = self.mu, stddev = self.sigma))
         conv_b = tf.Variable(tf.zeros(shape[3]))
         return tf.nn.conv2d(x, conv_W, strides=strides, padding=padding) + conv_b
                            
-    def fully_Connected(x, input_size, output_size, mu = 0, sigma = 0.1):
+    def fully_Connected(self, x, input_size, output_size, mu = 0, sigma = 0.1):
         fc_W = tf.Variable(tf.truncated_normal(shape=(input_size, output_size), mean = mu, stddev = sigma))
         fc_b = tf.Variable(tf.zeros(output_size))
         return tf.matmul(x, fc_W)  + fc_b
 
     def LeNet(self, x, mu, sigma, number_channels, number_ouput_class):    
         # Layer 1: Convolutional. Input = 32x32x1. Output = 28x28x6.
-        conv1 =  self.convolution(x, shape = (5, 5, number_channels, 6), strides = [1, 1, 1, 1])                      
+        conv1 =  self.convolution(x=x, shape = (5, 5, number_channels, 6), strides = [1, 1, 1, 1])                      
         # Activation.
         conv1 = tf.nn.relu(conv1)
         # Pooling. Input = 28x28x6. Output = 14x14x6.
@@ -40,7 +43,7 @@ class lenet_traffic_sign_classifier:
         # Pooling. Input = 10x10x16. Output = 5x5x16.
         conv2 = tf.nn.max_pool(conv2, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding='VALID')
         # Flatten. Input = 5x5x16. Output = 400.
-        fc0   = flatten(conv2)
+        fc0   = Flatten(conv2)
         # Layer 3: Fully Connected. Input = 400. Output = 120.
         fc1   = self.fully_Connected(fc0,400,120)                        
         # Activation.
@@ -57,7 +60,7 @@ class lenet_traffic_sign_classifier:
     def Modified_LeNet(self, x, mu, sigma, number_channels, number_ouput_class):
         
         # Layer 1: Convolutional. Input = 32x32xnumber_channels. Output = 28x28x6.  
-        x = self.convolution(x, shape = (5, 5, number_channels, 6), strides = [1, 1, 1, 1])
+        x = self.convolution(x=x, shape=[5, 5, number_channels, 6], strides=[1, 1, 1, 1])
         # Activation.
         x = tf.nn.relu(x)    
         # Pooling. Input = 28x28x6. Output = 14x14x6.
@@ -70,13 +73,13 @@ class lenet_traffic_sign_classifier:
         # Pooling. Input = 10x10x16. Output = 5x5x16.
         x = tf.nn.max_pool(x, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding='VALID')    
         # Flatten. Input = 5x5x16. Output = 400.
-        layer2flat = flatten(x)    
+        layer2flat = Flatten()(x)    
         # Layer 3: Convolutional. Output = 1x1x400.   
         x = self.convolution(x, shape = (5, 5, 16, 400), strides = [1, 1, 1, 1])                     
         # Activation.
         x = tf.nn.relu(x)
         # Flatten x. Input = 1x1x400. Output = 400.
-        layer3flat = flatten(x)    
+        layer3flat = Flatten()(x)    
         # Concat layer2flat and x. Input = 400 + 400. Output = 800
         x = tf.concat([layer3flat, layer2flat], 1)    
         # Dropout
@@ -112,8 +115,8 @@ class lenet_traffic_sign_classifier:
         # Activation.
         x = tf.nn.relu(x)
         # Flatten x. Input = 1x1x400. Output = 400.
-        layer3flat = flatten(x)
-        layer3flat_branched = flatten(x_branched)
+        layer3flat = Flatten(x)
+        layer3flat_branched = Flatten(x_branched)
         # Concat layer2flat and x. Input = 400 + 400. Output = 800
         x = tf.concat([layer3flat, layer3flat_branched], 1)
         # Dropout
@@ -134,7 +137,7 @@ class lenet_traffic_sign_classifier:
         conv1 = tf.nn.dropout(conv1, 0.7)
         conv1a = conv1
         conv1a_mp = tf.nn.max_pool(conv1a, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding='VALID')
-        conv1a_mp = flatten(conv1a_mp)
+        conv1a_mp = Flatten(conv1a_mp)
         # Layer 2: Convolutional. Output = 10x10x24.
         conv2 = self.convolution(conv1, shape = (5, 5, 12, 24), strides = [1, 1, 1, 1])
         # Activation.
@@ -144,7 +147,7 @@ class lenet_traffic_sign_classifier:
         # Dropout
         conv2 = tf.nn.dropout(conv2, 0.6)
         # Flatten. Input = 5x5x16. Output = 400.
-        fc0   = flatten(conv2)
+        fc0   = Flatten(conv2)
         x = tf.concat([fc0, conv1a_mp], 1)                
         # fully connected output = 320
         fc1 = self.fully_Connected(x,1188,320)
@@ -164,22 +167,24 @@ class lenet_traffic_sign_classifier:
             total_accuracy += (accuracy * len(batch_x))
         return total_accuracy / num_examples
     
-    def training_pipeline(self, X_train, y_train, X_valid, y_valid):
-        self.x = tf.placeholder(tf.float32, (None, 32, 32, self.number_channels))
+    def init_training_pipeline(self):
+        self.x = tf.placeholder(tf.float32, (None, 32, 32, self.num_of_channel))
         self.y = tf.placeholder(tf.int32, (None))
         self.keep_prob = tf.placeholder(tf.float32) # probability to keep units
-        one_hot_y = tf.one_hot(self.y, self.number_ouput_class)
+        one_hot_y = tf.one_hot(self.y, self.num_of_output_class)
 
-        logits = self.Modified_LeNet(self.x, self.mu, self.sigma, self.number_channels, self.number_ouput_class)
+        logits = self.Modified_LeNet(self.x, self.mu, self.sigma, self.num_of_channel, self.num_of_output_class)
         self.prediction = tf.argmax(logits, 1)
         cross_entropy = tf.nn.softmax_cross_entropy_with_logits(labels=one_hot_y, logits=logits)
         loss_operation = tf.reduce_mean(cross_entropy)
         optimizer = tf.train.AdamOptimizer(learning_rate = self.rate)
-        training_operation = optimizer.minimize(loss_operation)
+        self.training_operation = optimizer.minimize(loss_operation)
 
         correct_prediction = tf.equal(tf.argmax(logits, 1), tf.argmax(one_hot_y, 1))
         self.accuracy_operation = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
         self.saver = tf.train.Saver()
+
+    def train(self, X_train, y_train, X_valid, y_valid):
 
         before = datetime.datetime.now()
 
@@ -197,7 +202,7 @@ class lenet_traffic_sign_classifier:
                 for offset in range(0, num_examples, self.batch_size):
                     end = offset + self.batch_size
                     batch_x, batch_y = X_train[offset:end], y_train[offset:end]
-                    sess.run(training_operation, feed_dict={self.x: batch_x, self.y: batch_y, self.keep_prob: 0.5})
+                    sess.run(self.training_operation, feed_dict={self.x: batch_x, self.y: batch_y, self.keep_prob: 0.5})
                     
                 validation_accuracy = self.evaluate(X_valid, y_valid)
                 validation_accuracy_figure.append(validation_accuracy)
@@ -231,6 +236,37 @@ class lenet_traffic_sign_classifier:
         logit = []
         with tf.Session() as sess:
             self.saver.restore(sess, tf.train.latest_checkpoint('.'))
+            logit = sess.run(self.prediction, feed_dict={self.x: X_test, self.keep_prob: 1.0})
+
+        # visualise the read images and prediction results
+        header = ["Sign number", "predicted label", "annotation"]
+        sign_name = [sign_names[i] for i in logit]
+        table_Data = []
+        table_Data.extend([[i+1 for i in range(number_Signs)],logit,sign_name])
+        print_Table(header,table_Data)
+
+        accuracy = 0.0
+        result = []
+        for n in range(number_Signs):
+            if logit[n] == int(y_test[n]):
+                accuracy = accuracy + (100./number_Signs)
+                result.append("correct")
+            else:
+                result.append("wrong")
+
+        print("Total accuracy = {} %".format(accuracy))
+        # visualize the accuracy with a table
+        header = ["expected label", "predicted label", "result"]
+        table_Data = []
+        table_Data.extend([y_test,logit,result])
+        print_Table(header,table_Data)
+
+
+    def test_model_and_run_test(self, path_to_meta_file, X_test, y_test, number_Signs = 10, sign_names = []):
+        logit = []
+        with tf.Session() as sess:
+            self.saver = tf.train.import_meta_graph(path_to_meta_file)
+            self.saver.restore(sess, 'lenet')
             logit = sess.run(self.prediction, feed_dict={self.x: X_test, self.keep_prob: 1.0})
 
         # visualise the read images and prediction results

@@ -1,2 +1,2 @@
-model_checkpoint_path: "attempt3"
-all_model_checkpoint_paths: "attempt3"
+model_checkpoint_path: "lenet"
+all_model_checkpoint_paths: "lenet"
