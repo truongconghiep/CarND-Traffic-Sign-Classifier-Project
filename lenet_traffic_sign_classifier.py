@@ -1,3 +1,4 @@
+from unicodedata import name
 from Traffic_Sign_Classifier import *
 from tensorflow.keras.layers import Flatten
 import glob
@@ -166,13 +167,13 @@ class lenet_traffic_sign_classifier:
         return total_accuracy / num_examples
     
     def init_training_pipeline(self):
-        self.x = tf.placeholder(tf.float32, (None, 32, 32, self.num_of_channel))
-        self.y = tf.placeholder(tf.int32, (None))
-        self.keep_prob = tf.placeholder(tf.float32) # probability to keep units
+        self.x = tf.placeholder(tf.float32, (None, 32, 32, self.num_of_channel), name="x")
+        self.y = tf.placeholder(tf.int32, (None), name="y")
+        self.keep_prob = tf.placeholder(tf.float32, name="keep_prob") # probability to keep units
         one_hot_y = tf.one_hot(self.y, self.num_of_output_class)
 
         logits = self.Modified_LeNet(self.x, self.mu, self.sigma, self.num_of_channel, self.num_of_output_class)
-        self.prediction = tf.argmax(logits, 1)
+        self.prediction = tf.argmax(logits, 1, name = "prediction")
         cross_entropy = tf.nn.softmax_cross_entropy_with_logits(labels=one_hot_y, logits=logits)
         loss_operation = tf.reduce_mean(cross_entropy)
         optimizer = tf.train.AdamOptimizer(learning_rate = self.rate)
@@ -261,32 +262,4 @@ class lenet_traffic_sign_classifier:
         print_Table(header,table_Data)
 
 
-    def test_model_and_run_test(self, path_to_meta_file, X_test, y_test, number_Signs = 10, sign_names = []):
-        logit = []
-        with tf.Session() as sess:
-            self.saver = tf.train.import_meta_graph(path_to_meta_file)
-            self.saver.restore(sess, 'lenet')
-            logit = sess.run(self.prediction, feed_dict={self.x: X_test, self.keep_prob: 1.0})
-
-        # visualise the read images and prediction results
-        header = ["Sign number", "predicted label", "annotation"]
-        sign_name = [sign_names[i] for i in logit]
-        table_Data = []
-        table_Data.extend([[i+1 for i in range(number_Signs)],logit,sign_name])
-        print_Table(header,table_Data)
-
-        accuracy = 0.0
-        result = []
-        for n in range(number_Signs):
-            if logit[n] == int(y_test[n]):
-                accuracy = accuracy + (100./number_Signs)
-                result.append("correct")
-            else:
-                result.append("wrong")
-
-        print("Total accuracy = {} %".format(accuracy))
-        # visualize the accuracy with a table
-        header = ["expected label", "predicted label", "result"]
-        table_Data = []
-        table_Data.extend([y_test,logit,result])
-        print_Table(header,table_Data)
+    
