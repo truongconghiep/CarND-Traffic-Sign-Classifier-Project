@@ -21,13 +21,13 @@ X_train, y_train = Read_Data_From_Pickle('./traffic-signs-data/PreprocessedTrain
 X_valid, y_valid = Read_Data_From_Pickle('./traffic-signs-data/PreprocessedValidationData.p')
 X_test, y_test = Read_Data_From_Pickle('./traffic-signs-data/PreprocessedTestData.p')
 
-# classifier = lenet_traffic_sign_classifier()
+classifier = lenet_traffic_sign_classifier()
 
-# classifier.init_training_pipeline()
+classifier.init_training_pipeline()
 
-# classifier.train(X_train, y_train, X_valid, y_valid)
+classifier.train(X_train, y_train, X_valid, y_valid)
 
-# classifier.evaluate_model(X_test, y_test, X_train, y_train, X_valid, y_valid)
+classifier.evaluate_model(X_test, y_test, X_train, y_train, X_valid, y_valid)
 
 # Number of images to load
 number_Signs = 10
@@ -48,7 +48,7 @@ image_gry = Convert_Data_To_GrayScale(np.array(read_images))
 # Read csv data      
 SignName_SvcFileName = './signnames.csv'
 sign_names = Read_Csv(SignName_SvcFileName, 1, ',')
-# classifier.test_model(image_gry, read_labels, number_Signs=number_Signs, sign_names=sign_names)
+classifier.test_model(image_gry, read_labels, number_Signs=number_Signs, sign_names=sign_names)
 
 
 with tf.Session() as sess:

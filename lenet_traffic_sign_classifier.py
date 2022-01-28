@@ -4,6 +4,9 @@ from tensorflow.keras.layers import Flatten
 import glob
 import tensorflow.compat.v1 as tf
 tf.disable_v2_behavior()
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers.core import Dense, Activation, Flatten
+from tensorflow.keras.layers.convolutional import Conv2D
 
 
 class lenet_traffic_sign_classifier:
@@ -59,7 +62,7 @@ class lenet_traffic_sign_classifier:
     def Modified_LeNet(self, x, mu, sigma, number_channels, number_ouput_class):
         
         # Layer 1: Convolutional. Input = 32x32xnumber_channels. Output = 28x28x6.  
-        x = self.convolution(x, shape=(5, 5, 1, 6), strides=[1, 1, 1, 1])
+        x = self.convolution(x, shape=(5, 5, number_channels, 6), strides=[1, 1, 1, 1])
         # Activation.
         x = tf.nn.relu(x)    
         # Pooling. Input = 28x28x6. Output = 14x14x6.
@@ -261,5 +264,6 @@ class lenet_traffic_sign_classifier:
         table_Data.extend([y_test,logit,result])
         print_Table(header,table_Data)
 
-
+    def keras_model(self):
+        self.model = 
     
