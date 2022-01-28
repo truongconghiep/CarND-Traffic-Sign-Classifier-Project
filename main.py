@@ -30,7 +30,7 @@ X_test, y_test = Read_Data_From_Pickle('./traffic-signs-data/PreprocessedTestDat
 # classifier.evaluate_model(X_test, y_test, X_train, y_train, X_valid, y_valid)
 
 # Number of images to load
-number_Signs = 40
+number_Signs = 10
 
 # Read file names from germman traffic sign test set
 dirName ='./GTSRB/Final_Test/Images'
@@ -64,4 +64,27 @@ with tf.Session() as sess:
     elapsed_time = end_time - start_time
     elapsed_time_milliSeconds = elapsed_time*1000
     print("code elapsed time in milliseconds is ",elapsed_time_milliSeconds)
+
+    # visualise the read images and prediction results
+    header = ["Sign number", "predicted label", "annotation"]
+    sign_name = [sign_names[i] for i in logit]
+    table_Data = []
+    table_Data.extend([[i+1 for i in range(number_Signs)],logit,sign_name])
+    print_Table(header,table_Data)
+
+    accuracy = 0.0
+    result = []
+    for n in range(number_Signs):
+        if logit[n] == int(read_labels[n]):
+            accuracy = accuracy + (100./number_Signs)
+            result.append("correct")
+        else:
+            result.append("wrong")
+
+    print("Total accuracy = {} %".format(accuracy))
+    # visualize the accuracy with a table
+    header = ["expected label", "predicted label", "result"]
+    table_Data = []
+    table_Data.extend([read_labels,logit,result])
+    print_Table(header,table_Data)
 
