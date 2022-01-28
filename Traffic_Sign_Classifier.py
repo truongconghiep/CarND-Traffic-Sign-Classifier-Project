@@ -20,6 +20,8 @@ from keras.preprocessing.image import ImageDataGenerator, array_to_img, img_to_a
 from keras import backend as K
 from beautifultable import BeautifulTable
 
+import os.path
+
 K.set_image_data_format('channels_first')
 
 ###############################  Basic functions #########################################################################
@@ -157,7 +159,7 @@ def Data_Visualisation(labels,class_name):
     plt.legend((p0[0], p1[0], p2[0]), ('train' , 'test', 'validation'))
     plt.show()
     
-def Get_and_crop_n_image_randomly(images, number_Signs, labels):
+def Get_and_crop_n_image_randomly(images, number_Signs, labels, dirName):
     """
         This function extracts a number of images from a given image set
             input:
@@ -172,11 +174,12 @@ def Get_and_crop_n_image_randomly(images, number_Signs, labels):
     indices = random.sample(range(0,len(images)),number_Signs) 
     # Read and crop images
     for n in range(0,number_Signs):
-        img = imread(images[indices[n]])
+        name = dirName + '/' + str(indices[n]).zfill(5)  + '.ppm'
+        img = imread(name)
         resized_image = cv2.resize(img,(32,32))
         cropped_images.append(resized_image)
         chosen_labels.append(labels[indices[n]])
-    return cropped_images, chosen_labels
+    return cropped_images, chosen_labels, indices
 
 def Get_n_images_randomly(images, number_images, labels, convert_to_array = False):
     chosen_images = []
