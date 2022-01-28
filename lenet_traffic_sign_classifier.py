@@ -1,5 +1,3 @@
-from signal import Sigmasks
-from torch import mul
 from Traffic_Sign_Classifier import *
 from tensorflow.keras.layers import Flatten
 import glob
@@ -8,10 +6,10 @@ tf.disable_v2_behavior()
 
 
 class lenet_traffic_sign_classifier:
-    def __init__ (self, mu=0, sigma=0.1, num_of_channel = 3, num_of_output_class = 43, \
+    def __init__ (self, mu=0, sigma=0.1, num_of_channel = 1, num_of_output_class = 43, \
                                         epochs = 200, batch_size = 128, rate = 0.0009):
-        self.mu = mu
-        self.sigma = sigma
+        self.mu = 0
+        self.sigma = 0.1
         self.num_of_channel = num_of_channel
         self.num_of_output_class = num_of_output_class
         self.epoch = epochs
@@ -19,7 +17,7 @@ class lenet_traffic_sign_classifier:
         self.rate = rate
 
 
-    def convolution(self, x=None, shape = None, strides = None, padding = 'VALID'):
+    def convolution(self, x, shape = None, strides = None, padding = 'VALID'):
         conv_W = tf.Variable(tf.truncated_normal(shape=shape, mean = self.mu, stddev = self.sigma))
         conv_b = tf.Variable(tf.zeros(shape[3]))
         return tf.nn.conv2d(x, conv_W, strides=strides, padding=padding) + conv_b
@@ -60,7 +58,7 @@ class lenet_traffic_sign_classifier:
     def Modified_LeNet(self, x, mu, sigma, number_channels, number_ouput_class):
         
         # Layer 1: Convolutional. Input = 32x32xnumber_channels. Output = 28x28x6.  
-        x = self.convolution(x=x, shape=[5, 5, number_channels, 6], strides=[1, 1, 1, 1])
+        x = self.convolution(x, shape=(5, 5, 1, 6), strides=[1, 1, 1, 1])
         # Activation.
         x = tf.nn.relu(x)    
         # Pooling. Input = 28x28x6. Output = 14x14x6.
@@ -240,6 +238,7 @@ class lenet_traffic_sign_classifier:
 
         # visualise the read images and prediction results
         header = ["Sign number", "predicted label", "annotation"]
+        print(logit)
         sign_name = [sign_names[i] for i in logit]
         table_Data = []
         table_Data.extend([[i+1 for i in range(number_Signs)],logit,sign_name])
