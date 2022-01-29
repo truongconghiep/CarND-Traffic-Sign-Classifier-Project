@@ -1,12 +1,14 @@
 from unicodedata import name
+
+from numpy import concatenate
 from Traffic_Sign_Classifier import *
-from tensorflow.keras.layers import Flatten
+from tensorflow.keras.layers import Flatten, Dense, Activation, Flatten, Conv2D, MaxPooling2D, Concatenate, Dropout
 import glob
 import tensorflow.compat.v1 as tf
 tf.disable_v2_behavior()
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers.core import Dense, Activation, Flatten
-from tensorflow.keras.layers.convolutional import Conv2D
+from sklearn.preprocessing import LabelBinarizer
+# import tensorflow as tf
 
 
 class lenet_traffic_sign_classifier:
@@ -45,7 +47,7 @@ class lenet_traffic_sign_classifier:
         # Pooling. Input = 10x10x16. Output = 5x5x16.
         conv2 = tf.nn.max_pool(conv2, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding='VALID')
         # Flatten. Input = 5x5x16. Output = 400.
-        fc0   = Flatten(conv2)
+        fc0   = Flatten()(conv2)
         # Layer 3: Fully Connected. Input = 400. Output = 120.
         fc1   = self.fully_Connected(fc0,400,120)                        
         # Activation.
@@ -61,7 +63,7 @@ class lenet_traffic_sign_classifier:
 
     def Modified_LeNet(self, x, mu, sigma, number_channels, number_ouput_class):
         
-        # Layer 1: Convolutional. Input = 32x32xnumber_channels. Output = 28x28x6.  
+        #Layer 1: Convolutional. Input = 32x32xnumber_channels. Output = 28x28x6.   
         x = self.convolution(x, shape=(5, 5, number_channels, 6), strides=[1, 1, 1, 1])
         # Activation.
         x = tf.nn.relu(x)    
@@ -83,9 +85,9 @@ class lenet_traffic_sign_classifier:
         # Flatten x. Input = 1x1x400. Output = 400.
         layer3flat = Flatten()(x)    
         # Concat layer2flat and x. Input = 400 + 400. Output = 800
-        x = tf.concat([layer3flat, layer2flat], 1)    
+        x = tf.concat([layer3flat, layer2flat], 1)
         # Dropout
-        x = tf.nn.dropout(x, self.keep_prob)    
+        x = tf.nn.dropout(x, self.keep_prob)
         # Layer 4: Fully Connected. Input = 800. Output = number_ouput_class.
         logits = self.fully_Connected(x,800,number_ouput_class)
         
@@ -264,6 +266,37 @@ class lenet_traffic_sign_classifier:
         table_Data.extend([y_test,logit,result])
         print_Table(header,table_Data)
 
-    def keras_model(self):
-        self.model = 
-    
+    def keras_model_LeNet(self, x):
+        self.model = Sequential()
+        # Layer 1: Convolutional. Input = 32x32xnumber_channels. Output = 28x28x6.   
+        self.model.add(Conv2D(filters=6, kernel_size=(5, 5),  input_shape=(32,32,1), strides=(1,1),  \
+            activation='relu', padding='valid', data_format='channels_last'))
+        # input 28x28x6, output 14x14x6
+        self.model.add(MaxPooling2D(pool_size=(2, 2), strides=(2,2), padding='valid', data_format='channels_last'))
+        # Layer 2: Convolutional. Input = 14x14x6, output = 10x10x16
+        self.model.add(Conv2D(filters=16, kernel_size=(5, 5), activation='relu', data_format='channels_last'))
+        # Input = 10x10x16, Output = 5x5x16
+        self.model.add(MaxPooling2D(pool_size=(2, 2), strides=(2,2), padding='valid', data_format='channels_last'))
+        # Input = 5x5x16, Output = 400
+        self.model.add(Flatten())
+
+        self.model.add(Dense(120))
+
+        self.model.add(Activation('relu'))
+
+        self.model.add(Dense(84))
+
+        self.model.add(Activation('relu'))
+
+        self.model.add(Dense(self.num_of_output_class))
+
+        # self.model.add(Activation('relu'))
+
+
+    def keras_train(self, X_train, Y_train):
+        label_binarizer = LabelBinarizer()
+        y_one_hot = label_binarizer.fit_transform(Y_train)
+
+        # compile and fit model
+        self.model.compile('adam', 'categorical_crossentropy', ['accuracy'])
+        history = self.model.fit(X_train, y_one_hot, epochs=self.epoch, validation_split=0.2)

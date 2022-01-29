@@ -1,8 +1,8 @@
 from Traffic_Sign_Classifier import *
 import glob
 from lenet_traffic_sign_classifier import *
-import tensorflow.compat.v1 as tf
-tf.disable_v2_behavior()
+# import tensorflow.compat.v1 as tf
+# tf.disable_v2_behavior()
 import time
 
 # data_pre_processing = data_augmentation(path_to_train_data = "./traffic-signs-data/train.p", \
@@ -21,6 +21,8 @@ X_train, y_train = Read_Data_From_Pickle('./traffic-signs-data/PreprocessedTrain
 X_valid, y_valid = Read_Data_From_Pickle('./traffic-signs-data/PreprocessedValidationData.p')
 X_test, y_test = Read_Data_From_Pickle('./traffic-signs-data/PreprocessedTestData.p')
 
+print("X_train ", X_train.shape)
+
 classifier = lenet_traffic_sign_classifier()
 
 classifier.init_training_pipeline()
@@ -28,6 +30,10 @@ classifier.init_training_pipeline()
 classifier.train(X_train, y_train, X_valid, y_valid)
 
 classifier.evaluate_model(X_test, y_test, X_train, y_train, X_valid, y_valid)
+
+# classifier.keras_model_LeNet(X_train)
+
+classifier.keras_train(X_train, y_train)
 
 # Number of images to load
 number_Signs = 10
@@ -88,3 +94,23 @@ with tf.Session() as sess:
     table_Data.extend([read_labels,logit,result])
     print_Table(header,table_Data)
 
+# from keras.models import Sequential
+# from keras.layers.core import Dense, Activation, Flatten
+# from keras.layers.convolutional import Conv2D
+
+# # Build Convolutional Neural Network in Keras Here
+# model = Sequential()
+# model.add(Conv2D(32, (3, 3), input_shape=(32, 32, 3)))
+# model.add(Activation('relu'))
+# model.add(Flatten())
+# model.add(Dense(128))
+# model.add(Activation('relu'))
+# model.add(Dense(5))
+# model.add(Activation('softmax'))
+
+# # Preprocess data
+# X_normalized = np.array(X_train / 255.0 - 0.5 )
+
+# from sklearn.preprocessing import LabelBinarizer
+# label_binarizer = LabelBinarizer()
+# y_one_hot = label_binarizer.fit_transform(y_train)
