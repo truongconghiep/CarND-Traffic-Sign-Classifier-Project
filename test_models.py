@@ -28,6 +28,7 @@ image_gry = Convert_Data_To_GrayScale(np.array(read_images))
 SignName_SvcFileName = './signnames.csv'
 sign_names = Read_Csv(SignName_SvcFileName, 1, ',')
 
+read_images = np.array(read_images)
 # Test AlexNet
 model = load_model('AlexNet_Traffic_Sign_Classifier.h5')
 start_time = time.time()
