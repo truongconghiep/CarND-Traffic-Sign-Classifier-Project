@@ -45,7 +45,7 @@ read_images = np.array(read_images)
 print("read_images shape: ", read_images.shape)
 
 logit = model.predict(read_images)
-print("logit ", logit)
+
 print("max logit ", np.argmax(logit, 1))
 print("read_labels ", read_labels)
 
