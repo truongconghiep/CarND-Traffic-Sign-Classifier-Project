@@ -352,22 +352,22 @@ class data_augmentation:
     def augment_data(self, gray_scale=True):
         Augmentation_start_time = datetime.datetime.now()
         # augment the data set
-        X_train, y_train = Image_Augmentation(self.X_train, self.y_train)
+        self.X_train, self.y_train = Image_Augmentation(self.X_train, self.y_train)
         # visualize augmented data
         Data_Visualisation([self.y_train, self.y_test, self.y_valid], self.sign_names)
 
         if gray_scale:
             print("converting to grayscale")
             # convert the data set to grayscale
-            X_train = Convert_Data_To_GrayScale(X_train)
-            X_test = Convert_Data_To_GrayScale(self.X_test)
-            X_valid = Convert_Data_To_GrayScale(self.X_valid)
+            self.X_train = Convert_Data_To_GrayScale(self.X_train)
+            self.X_test = Convert_Data_To_GrayScale(self.X_test)
+            self.X_valid = Convert_Data_To_GrayScale(self.X_valid)
 
             # Normalize the grayscale data set
             print("normalizing")
-            X_train = Data_Normalization(X_train)
-            X_test = Data_Normalization(X_test)
-            X_valid = Data_Normalization(X_valid)
+            self.X_train = Data_Normalization(self.X_train)
+            self.X_test = Data_Normalization(self.X_test)
+            self.X_valid = Data_Normalization(self.X_valid)
         print("Augmentation time: ", Calculate_Time_Diff_Up_To_Now_in_second(Augmentation_start_time), " seconds")
 
     def save_augmented_data(self, train_filename, validation_filename, test_filename):
