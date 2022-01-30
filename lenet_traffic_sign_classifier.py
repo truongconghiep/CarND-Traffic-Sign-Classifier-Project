@@ -21,6 +21,7 @@ class lenet_traffic_sign_classifier:
         self.epoch = epochs
         self.batch_size = batch_size
         self.rate = rate
+        self.sess = tf.Session()
 
 
     def convolution(self, x, shape = None, strides = None, padding = 'VALID'):
@@ -236,35 +237,52 @@ class lenet_traffic_sign_classifier:
             Validation_accuracy = self.evaluate(X_valid, y_valid)
             print("Validation Accuracy = {:.3f}".format(Validation_accuracy))
 
-    def test_model(self, X_test, y_test, number_Signs = 10, sign_names = []):
-        logit = []
+    def test_model(self, X_test, y_test, number_Signs = 10, sign_names = [], using_pretrainend=True, enable_table_visualization=False):
+        logits = []
         with tf.Session() as sess:
-            self.saver.restore(sess, tf.train.latest_checkpoint('.'))
-            logit = sess.run(self.prediction, feed_dict={self.x: X_test, self.keep_prob: 1.0})
+            if using_pretrainend == False:
+                self.saver.restore(sess, tf.train.latest_checkpoint('.'))
+            logits = self.sess.run(self.prediction, feed_dict={self.x: X_test, self.keep_prob: 1.0})
 
         # visualise the read images and prediction results
-        header = ["Sign number", "predicted label", "annotation"]
-        print(logit)
-        sign_name = [sign_names[i] for i in logit]
-        table_Data = []
-        table_Data.extend([[i+1 for i in range(number_Signs)],logit,sign_name])
-        print_Table(header,table_Data)
+        if enable_table_visualization:
+            header = ["Sign number", "predicted label", "annotation"]
+            print(logits)
+            sign_name = [sign_names[i] for i in logits]
+            table_Data = []
+            table_Data.extend([[i+1 for i in range(number_Signs)],logits,sign_name])
+            print_Table(header,table_Data)
 
         accuracy = 0.0
         result = []
         for n in range(number_Signs):
-            if logit[n] == int(y_test[n]):
+            if logits[n] == int(y_test[n]):
                 accuracy = accuracy + (100./number_Signs)
                 result.append("correct")
             else:
                 result.append("wrong")
 
         print("Total accuracy = {} %".format(accuracy))
-        # visualize the accuracy with a table
-        header = ["expected label", "predicted label", "result"]
-        table_Data = []
-        table_Data.extend([y_test,logit,result])
-        print_Table(header,table_Data)
+        if enable_table_visualization:
+            # visualize the accuracy with a table
+            header = ["expected label", "predicted label", "result"]
+            table_Data = []
+            table_Data.extend([y_test,logits,result])
+            print("y_test ", len(y_test))
+            print("logits ", len(logits))
+            print("result ", len(result))
+            print_Table(header,table_Data)
+    
+    def load_pretrained_model(self, meta = 'lenet.meta', weights="lenet"):
+        # self.sess = tf.Session()
+        # # with tf.Session() as sess:
+        self.saver = tf.train.import_meta_graph('lenet.meta')
+        self.saver.restore(self.sess, "lenet")
+        graph = tf.get_default_graph()
+        self.x = graph.get_tensor_by_name("x:0")
+        self.keep_prob = graph.get_tensor_by_name("keep_prob:0")
+        self.prediction = graph.get_tensor_by_name("prediction:0")
+
 
     def keras_model_LeNet(self, x):
         self.model = Sequential()
