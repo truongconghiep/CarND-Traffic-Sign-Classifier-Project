@@ -1,7 +1,7 @@
 from unicodedata import name
 
 from numpy import concatenate
-from Traffic_Sign_Classifier import *
+from data_preprocessing import *
 from tensorflow.keras.layers import Flatten, Dense, Activation, Flatten, Conv2D, MaxPooling2D, Concatenate, Dropout
 import glob
 import tensorflow.compat.v1 as tf

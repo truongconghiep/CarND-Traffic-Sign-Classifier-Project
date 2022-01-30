@@ -3,7 +3,7 @@ import numpy as np
 from tensorflow.keras.layers import Flatten, Dense, Activation, Flatten, Conv2D, MaxPooling2D, Concatenate, Dropout
 from tensorflow.keras.layers import BatchNormalization
 from tensorflow.keras.models import Sequential
-from Traffic_Sign_Classifier import *
+from data_preprocessing import *
 from sklearn.preprocessing import LabelBinarizer
 from sklearn.utils.multiclass import unique_labels
 from tensorflow.keras.utils import to_categorical

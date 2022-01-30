@@ -1,4 +1,4 @@
-from Traffic_Sign_Classifier import *
+from data_preprocessing import *
 from AlexNet_Traffic_Sign_Classifier import *
 
 X_train, y_train = Read_Data_From_Pickle('./traffic-signs-data/rgb_processed_train.p')

@@ -1,5 +1,5 @@
 from tensorflow.keras.models import load_model
-from Traffic_Sign_Classifier import *
+from data_preprocessing import *
 from tensorflow.keras.utils import to_categorical
 import time
 import glob
