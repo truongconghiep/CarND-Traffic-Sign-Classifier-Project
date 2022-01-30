@@ -22,18 +22,19 @@ elapsed_time = end_time - start_time
 elapsed_time_milliSeconds = elapsed_time*1000
 print("evaluation time in milliseconds is ",elapsed_time_milliSeconds)
 # Number of images to load
-number_Signs = 10
+number_Signs = 12600
 
 # Read file names from germman traffic sign test set
 dirName ='./GTSRB/Final_Test/Images'
 # Read image file names
 images = glob.glob(dirName + '/*.ppm')
+print("ytest size ", len(images))
 # Read the corresponding labels
 SignName_SvcFileName = 'GT-final_test.csv'
 sign_labels_in_test = Read_Csv(SignName_SvcFileName, 7, ';')
 # get randomly images from the data set
 read_images, read_labels, indices = Get_and_crop_n_image_randomly(images, number_Signs, sign_labels_in_test, dirName)
-Plot_Images(read_images, 'Test images')
+# Plot_Images(read_images, 'Test images')
 # Convert the read images to grayscale
 
 
@@ -44,8 +45,15 @@ sign_names = Read_Csv(SignName_SvcFileName, 1, ',')
 read_images = np.array(read_images)
 print("read_images shape: ", read_images.shape)
 
-logit = model.predict(read_images)
+logits = model.predict(read_images)
+logits = np.argmax(logits, 1)
 
-print("max logit ", np.argmax(logit, 1))
-print("read_labels ", read_labels)
+
+correct = 0
+for i in range(number_Signs):
+    if logits[i] == int(read_labels[i]):
+        correct = correct + 1
+    
+print("correct ", correct/number_Signs * 100)
+
 
