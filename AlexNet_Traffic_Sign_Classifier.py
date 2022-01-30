@@ -15,9 +15,9 @@ class AlexNet_Traffic_Sign_Classifier:
     def __init__(self, batch_size= 100, epochs=100, learn_rate=.001):
         np.random.seed(1000)
         #Defining the parameters
-        self.batch_size= 100
-        self.epochs=100
-        self.learn_rate=.001
+        self.batch_size = batch_size
+        self.epochs = epochs
+        self.learn_rate = learn_rate
         #Instantiation
         self.AlexNet = Sequential()
 
